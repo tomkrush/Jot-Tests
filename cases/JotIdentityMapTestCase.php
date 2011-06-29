@@ -145,6 +145,21 @@ class JotIdentityMapTestCase extends JotUnitTestCase
 		$this->assertTrue(JotIdentityMap::exists($blog), 'Added object to identity map.');
 	}
 	
+	public function test_object_build()
+	{
+		$createdBlog = new Blog_Model(array(
+			'title' => 'test',
+			'id'	=> 1
+		));
+		
+		$builtBlog = $this->blog_model->build(array(
+			'id' => 1,
+			'title' => 'test'
+		));
+		
+		$this->assertEquals($createdBlog, $builtBlog, 'I want build to retrieve object from identity map.');
+	}
+	
 	public function test_object_find()
 	{		
 		$created_objects = array();
