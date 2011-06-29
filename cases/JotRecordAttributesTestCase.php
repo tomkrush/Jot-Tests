@@ -29,6 +29,14 @@ class JotRecordAttributesTestCase extends JotUnitTestCase
 		$this->assertEquals('Blog', $blog->name, 'Attribute reads & writes correctly using get magic method');
 	}
 	
+	public function test_write_null_attribute()
+	{
+		$blog = new Blog_Model;
+		$blog->name = NULL;
+		
+		$this->assertTrue($blog->has_attribute('name'), 'I want attribute to exist even if it is null');
+	}
+	
 	public function test_has_attribute()
 	{
 		$blog = $this->blog_model->build(array(

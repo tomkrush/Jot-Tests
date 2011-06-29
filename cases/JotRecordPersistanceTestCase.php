@@ -76,6 +76,17 @@ class JotRecordPersistanceTestCase extends JotUnitTestCase
 		$this->assertEquals('Test title', $blog->name, 'Attribute reloaded');
 	}
 	
+	public function test_persist_null_attribute()
+	{
+		$blog = new Blog_Model;
+		$blog->name = NULL;
+		$blog->save();
+		
+		$blog = $this->blog_model->first();
+		
+		$this->assertTrue($blog->has_attribute('name'), 'I want attribute to exist even if it is null');
+	}
+	
 	public function test_create()
 	{
 		$blog = $this->blog_model->create(array(
