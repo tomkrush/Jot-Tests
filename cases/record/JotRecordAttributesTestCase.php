@@ -69,6 +69,24 @@ class JotRecordAttributesTestCase extends JotUnitTestCase
 		
 		$this->assertFalse($this->description, 'Description was temporary');
 	}
+	
+	public function test_add_transient_attribute()
+	{
+		$object = new Type_Model;
+		$object->add_transient('variation');
+		$object->variation = 'test';
+		$object->save();
+		$object->reload();
+		
+		$this->assertFalse($this->description, 'I want transient attribute to be created');
+	}
+	
+	public function test_has_transient_attribute()
+	{
+		$object = new Type_Model;
+		$object->add_transient('variation');
+		$this->assertTrue($object->has_transient('variation'), 'Object has transient attribute');		
+	}
 
 	public function test_read_attribute_function()
 	{
