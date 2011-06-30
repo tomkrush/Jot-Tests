@@ -143,11 +143,23 @@ class JotRecordPersistanceTestCase extends JotUnitTestCase
 		// $this->assertNotEquals($updated_at, $blog->read_attribute('updated_at'), 'Updated at timestamp should have changed.');
 	}
 	
+	public function test_touch()
+	{
+		$blog = $this->blog_model->create(array(
+			'name' => 'Blog #1'
+		));
+				
+		$blog->touch();
+				
+		$this->assertTrue($blog->touch(), 'I want the timestamp to be updated.');		
+	}
+	
 	public function test_update_attribute()
 	{
 		$blog = $this->blog_model->create(array(
 			'name' => 'Blog #1',
 			'slug' => 'Blog #1',
+			'updated_at' => strtotime('yesterday')
 		));
 		
 		$name = $blog->name;
