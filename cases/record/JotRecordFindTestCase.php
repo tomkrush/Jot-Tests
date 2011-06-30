@@ -84,13 +84,22 @@ class JotRecordFindTestCase extends JotUnitTestCase
 	
 	public function test_find()
 	{
-		$blogs = $this->blog_model->find(NULL, 0, 20);
+		$blogs = $this->blog_model->find(NULL, NULL, 0, 20);
 		$this->assertEquals(20, count($blogs), 'Blog should return specified number rows');
 
-		$blogs = $this->blog_model->find(NULL, 0, 10);
+		$blogs = $this->blog_model->find(NULL, NULL, 0, 10);
 		$this->assertEquals(10, count($blogs), 'Limit affects return');
 
-		$blogs = $this->blog_model->find(array('id <' => 7), 1, 5);
+		$blogs = $this->blog_model->find(array('id <' => 7), NULL, 1, 5);
 		$this->assertEquals(5, count($blogs), 'Condition and limit will affect returned result');
+	}
+	
+	public function test_order()
+	{
+		$blog = $this->blog_model->first(NULL, 'slug ASC');
+		$this->assertEquals('blog_0', $blog->slug, 'I want slug to order ascending.');
+
+		$blog = $this->blog_model->first(NULL, 'slug DESC');
+		$this->assertEquals('blog_9', $blog->slug, 'I want slug to order descending.');			
 	}
 }

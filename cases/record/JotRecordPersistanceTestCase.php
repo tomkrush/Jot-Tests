@@ -136,11 +136,6 @@ class JotRecordPersistanceTestCase extends JotUnitTestCase
 		
 		$this->assertTrue($created_at, 'Created at timestamp does not exist');
 		$this->assertTrue($updated_at, 'Updated at timestamp does not exist');		
-
-		// $blog->save();
-		
-		// $this->assertEquals($created_at, $blog->read_attribute('created_at'), 'Created at timestamp not have changed.');
-		// $this->assertNotEquals($updated_at, $blog->read_attribute('updated_at'), 'Updated at timestamp should have changed.');
 	}
 	
 	public function test_touch()
