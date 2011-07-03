@@ -100,6 +100,8 @@ class JotRecordAssociationTestCase extends JotUnitTestCase
 		$image = $company->images->first();
 	
 		$company = $image->imageable;
+		
+		$this->assertEquals('Company_Model', get_class($company), 'Association should return correct type.');
 						
 		$this->assertEquals('Pet Store', $company->name, 'Polymorphic object retrieves parent');
 	}
@@ -157,5 +159,9 @@ class JotRecordAssociationTestCase extends JotUnitTestCase
 		$blog->articles = array($article, $article2);
 	
 		$this->assertEquals(2, count($blog->articles->all()), 'Correct number of articles returned');
+		
+		$article = $blog->articles->first();
+		
+		$this->assertEquals('Article_Model', get_class($article), 'Association should return correct type.');
 	}	
 }
