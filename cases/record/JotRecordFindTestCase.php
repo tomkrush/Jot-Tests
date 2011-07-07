@@ -76,6 +76,7 @@ class JotRecordFindTestCase extends JotUnitTestCase
 	public function test_all()
 	{
 		$blogs = $this->blog_model->all();
+
 		$this->assertEquals(20, count($blogs), 'Blog should return specified number rows');
 		
 		$blogs = $this->blog_model->all(array('id <' => 4));
@@ -84,22 +85,34 @@ class JotRecordFindTestCase extends JotUnitTestCase
 	
 	public function test_find()
 	{
-		$blogs = $this->blog_model->find(NULL, NULL, 0, 20);
+		$blogs = $this->blog_model->find(NULL, 0, 20);
 		$this->assertEquals(20, count($blogs), 'Blog should return specified number rows');
 
-		$blogs = $this->blog_model->find(NULL, NULL, 0, 10);
+		$blogs = $this->blog_model->find(NULL, 0, 10);
 		$this->assertEquals(10, count($blogs), 'Limit affects return');
 
-		$blogs = $this->blog_model->find(array('id <' => 7), NULL, 1, 5);
+		$blogs = $this->blog_model->find(array('id <' => 7), 1, 5);
 		$this->assertEquals(5, count($blogs), 'Condition and limit will affect returned result');
 	}
 	
 	public function test_order()
 	{
-		$blog = $this->blog_model->first(NULL, 'slug ASC');
+		$blog = $this->blog_model->first(array('order'=>'slug ASC'));
 		$this->assertEquals('blog_0', $blog->slug, 'I want slug to order ascending.');
-
-		$blog = $this->blog_model->first(NULL, 'slug DESC');
+	
+		$blog = $this->blog_model->first(array('order'=>'slug DESC'));
 		$this->assertEquals('blog_9', $blog->slug, 'I want slug to order descending.');			
+	}
+	
+	public function test_find_by_sql()
+	{		
+		$blogs = $this->blog_model->find_by_sql('SELECT * FROM blogs');
+		$this->assertEquals(20, count($blogs), '20 records found');
+	}
+	
+	public function test_find_by_sql_with_args()
+	{		
+		$blogs = $this->blog_model->find_by_sql('SELECT * FROM blogs WHERE name=?', 'Blog #1');
+		$this->assertEquals(1, count($blogs), '1 records found');
 	}
 }
