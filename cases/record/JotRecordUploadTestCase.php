@@ -31,6 +31,8 @@ class JotRecordUploadTestCase extends JotUnitTestCase
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('user_validation_attachment_required_model');
+		$this->load->model('user_validation_attachment_content_type_model');
 	}
 	
 	public function test_upload()
@@ -44,5 +46,41 @@ class JotRecordUploadTestCase extends JotUnitTestCase
 		$this->assertEquals('image/png', $file->read_attribute('avatar_content_type'), 'I want avatar_content_type to be set.');
 		$this->assertEquals('23123', $file->read_attribute('avatar_file_size'), 'I want avatar_file_size to be set.');
 		$this->assertTrue($file->read_attribute('avatar_updated_at'), 'I want avatar_updated_at to be set.');
+	}
+	
+	public function test_validation_required_fail()
+	{
+		set_http_files('user', 'avatar', NULL, NULL, NULL, 4, NULL);
+		
+		$file = new User_Validation_Attachment_Required_Model;
+		
+		$this->assertFalse($file->is_valid() , 'I want validation to fail because attachment is required');
+	}
+
+	public function test_validation_required_pass()
+	{
+		set_http_files('user', 'avatar', 'avatar.png', 'image/png', '...', 0, '23123');
+				
+		$file = new User_Validation_Attachment_Required_Model;
+		
+		$this->assertTrue($file->is_valid() , 'I want validation to pass.');
+	}
+	
+	public function test_validation_content_type_fail()
+	{
+		set_http_files('user', 'avatar', 'file.txt', 'text/plain', '...', 0, '23123');
+		
+		$file = new User_Validation_Attachment_Content_Type_Model;
+		
+		$this->assertFalse($file->is_valid() , 'I want validation to fail because attachment is wrong type');
+	}
+
+	public function test_validation_content_type_pass()
+	{
+		set_http_files('user', 'avatar', 'avatar.png', 'image/png', '...', 0, '23123');
+		
+		$file = new User_Validation_Attachment_Content_Type_Model;
+		
+		$this->assertTrue($file->is_valid() , 'I want validation to pass.');
 	}
 }
