@@ -103,16 +103,4 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		$blog = $this->blog_model->first(array('order'=>'slug DESC'));
 		$this->assertEquals('blog_9', $blog->slug, 'I want slug to order descending.');			
 	}
-	
-	public function test_find_by_sql()
-	{		
-		$blogs = $this->blog_model->find_by_sql('SELECT * FROM blogs');
-		$this->assertEquals(20, count($blogs), '20 records found');
-	}
-	
-	public function test_find_by_sql_with_args()
-	{		
-		$blogs = $this->blog_model->find_by_sql('SELECT * FROM blogs WHERE name=?', 'Blog #1');
-		$this->assertEquals(1, count($blogs), '1 records found');
-	}
 }
