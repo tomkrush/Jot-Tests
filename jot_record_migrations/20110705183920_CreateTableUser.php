@@ -1,5 +1,5 @@
 <?php
-class CreateTableUsrs
+class CreateTableUser
 {
 	function up()
 	{

@@ -21,7 +21,8 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		{
 			$this->blog_model->create(array(
 				'name' => 'Blog #'.$i,
-				'slug' => 'blog_'.$i
+				'slug' => 'blog_'.$i,
+				'status' => $i != 0 && $i % 3 == 0 ? 'draft' : 'published' 
 			));
 		}
 		
@@ -93,6 +94,27 @@ class JotRecordFindTestCase extends JotUnitTestCase
 
 		$blogs = $this->blog_model->find(array('id <' => 7), 1, 5);
 		$this->assertEquals(5, count($blogs), 'Condition and limit will affect returned result');
+	}
+	
+	public function test_find_by()
+	{
+		$blogs = $this->blog_model->find_by_status('draft');
+		
+		$this->assertEquals(5, count($blogs), 'I want find by x to return rows without using extra syntax.');
+	}
+	
+	public function test_first_by()
+	{
+		$blog = $this->blog_model->first_by_status('draft');
+		
+		$this->assertEquals('Blog #18', $blog->name, 'I want first by x to return rows without using extra syntax.');
+	}
+	
+	public function test_last_by()
+	{
+		$blog = $this->blog_model->last_by_status('draft');
+		
+		$this->assertEquals('Blog #5', $blog->name, 'I want last by x to return rows without using extra syntax.');
 	}
 	
 	public function test_order()
