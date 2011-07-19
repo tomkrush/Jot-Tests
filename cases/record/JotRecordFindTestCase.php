@@ -55,7 +55,7 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		$this->assertTrue($blog, 'Blog is returned');
 
 		$blog = $this->blog_model->first(1);
-		$this->assertTrue($blog, 'Blog is returned with id');
+		$this->assertEquals('Blog #0', $blog->name, 'Blog is returned with id');
 		
 		$blog = $this->blog_model->first(array('name' => 'Blog #1'));
 		$this->assertTrue($blog, 'Blog is returned with conditions');
@@ -66,8 +66,8 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		$blog = $this->blog_model->first();
 		$this->assertTrue($blog, 'Blog is returned');
 
-		$blog = $this->blog_model->last(1);
-		$this->assertTrue($blog, 'Blog is returned with id');
+		$blog = $this->blog_model->last(20);
+		$this->assertEquals('Blog #19', $blog->name, 'Blog is returned with id');
 		
 		$blog = $this->blog_model->last(array('name' => 'Blog #1'));
 		$this->assertTrue($blog, 'Blog is returned with conditions');		

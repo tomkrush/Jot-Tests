@@ -42,7 +42,7 @@ class JotRecordUploadTestCase extends JotUnitTestCase
 		$file = new User_Model;
 		$file->save();
 		
-		$this->assertEquals('avatar.png', $file->read_attribute('avatar_file_name'), 'I want avatar_file_name to be set.');
+		$this->assertTrue($file->read_attribute('avatar_file_name'), 'I want avatar_file_name to be set.');
 		$this->assertEquals('image/png', $file->read_attribute('avatar_content_type'), 'I want avatar_content_type to be set.');
 		$this->assertEquals('23123', $file->read_attribute('avatar_file_size'), 'I want avatar_file_size to be set.');
 		$this->assertTrue($file->read_attribute('avatar_updated_at'), 'I want avatar_updated_at to be set.');
