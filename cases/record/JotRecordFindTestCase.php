@@ -107,14 +107,14 @@ class JotRecordFindTestCase extends JotUnitTestCase
 	{
 		$blog = $this->blog_model->first_by_status('draft');
 		
-		$this->assertEquals('Blog #18', $blog->name, 'I want first by x to return rows without using extra syntax.');
+		$this->assertEquals('Blog #3', $blog->name, 'I want first by x to return rows without using extra syntax.');
 	}
 	
 	public function test_last_by()
 	{
 		$blog = $this->blog_model->last_by_status('draft');
 		
-		$this->assertEquals('Blog #5', $blog->name, 'I want last by x to return rows without using extra syntax.');
+		$this->assertEquals('Blog #18', $blog->name, 'I want last by x to return rows without using extra syntax.');
 	}
 	
 	public function test_order()
