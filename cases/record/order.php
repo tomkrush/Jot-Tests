@@ -5,7 +5,7 @@ $order = array(
 //	'JotRecordAttributesTestCase',
 //	'JotRecordNestedAttributesTestCase',
 //	'JotRecordPersistanceTestCase',
-	'JotRecordFindTestCase',
+//	'JotRecordFindTestCase',
 //	'JotRecordCalculationTestCase',
 //	'JotRecordHookTestCase',
 //	'JotRecordValidationTestCase',
@@ -14,4 +14,5 @@ $order = array(
 //	'JotIdentityMapTestCase',
 //	'JotRecordUploadTestCase',
 //	'JotFormTestCase',
+	'JotRecordPerformanceTestCase'
 );
