@@ -63,4 +63,23 @@ class JotArrayHelperTestCase extends UnitTestCase
 		
 		$this->assertEquals('John', value_for_key('person.name.first', $assoc), 'Found deep element');
 	}
+//	
+//	public function test_not_deep_value_for_key_performance()
+//	{
+//		$assoc = array(
+//			'person' => array(
+//				'name' => array(
+//					'first' => 'John',
+//					'last'  => 'Doe'
+//				)
+//			)
+//		);
+//		
+//		for($i = 0; $i < 10000; $i++)
+//		{
+//			value_for_key('person', $assoc);
+//		}
+//
+//		$this->assertTrue(TRUE, 'Not Deep Performance Test');
+//	}
 }
