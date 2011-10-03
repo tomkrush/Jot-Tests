@@ -32,6 +32,21 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		));
 	}
 	
+	public function build_articles()
+	{
+		$blogs = $this->blog_model->all();
+		
+		foreach($blogs as $blog)
+		{
+			for ($i=0; $i < 5; $i++)
+			{
+				$this->article_model->create(array(
+					'blog_id' => $blog->id
+				));
+			}
+		}
+	}
+	
 	public function test_exists()
 	{
 		$exists = $this->blog_model->exists(array(
@@ -94,6 +109,21 @@ class JotRecordFindTestCase extends JotUnitTestCase
 
 		$blogs = $this->blog_model->find(array('id <' => 7), 1, 5);
 		$this->assertEquals(5, count($blogs), 'Condition and limit will affect returned result');
+	}
+	
+	public function test_includes()
+	{
+		$this->build_articles();
+	
+		JotIdentityMap::clear();
+				
+		$blogs = $this->blog_model->find(array(
+			'includes'=>'articles'
+		));
+		
+		$count = JotIdentityMap::object_count();
+		
+		$this->assertEquals(120, $count, 'Include should return correct number of objects.');
 	}
 	
 	public function test_find_by()
