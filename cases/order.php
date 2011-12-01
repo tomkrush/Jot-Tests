@@ -1,5 +1,6 @@
 <?php
 
 $order = array(	
-	'JotArrayHelperTestCase'
+	'JotArrayHelperTestCase',
+	'JotPrimitiveHelperTestCase'
 );

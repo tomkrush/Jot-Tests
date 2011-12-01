@@ -49,10 +49,18 @@ class JotRecordValidationTestCase extends JotUnitTestCase
 		$this->assertTrue($blog->is_valid(), "I want validation to pass because name is present.");
 	}
 	
+	public function test_required_when_zero_pass()
+	{
+		$blog = new Blog_Validation_Required_Model;
+		$blog->name = 0;
+		
+		$this->assertTrue($blog->is_valid(), "I want validation to pass because name is present.");
+	}
+	
 	public function test_confirm_fail()
 	{
 		$blog = new Blog_Validation_Confirm_Model;
-		$blog->password = 'test';
+		$blog->password = 'missing_confirm';
 		
 		$this->assertFalse($blog->is_valid(), "I want validation to fail because password can't confirm.");
 	}

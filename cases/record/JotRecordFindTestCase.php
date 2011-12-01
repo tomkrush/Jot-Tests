@@ -130,7 +130,7 @@ class JotRecordFindTestCase extends JotUnitTestCase
 	{
 		$blogs = $this->blog_model->find_by_status('draft');
 		
-		$this->assertEquals(5, count($blogs), 'I want find by x to return rows without using extra syntax.');
+		$this->assertEquals(6, count($blogs), 'I want find by x to return rows without using extra syntax.');
 	}
 	
 	public function test_first_by()
