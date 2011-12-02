@@ -111,25 +111,28 @@ class JotRecordFindTestCase extends JotUnitTestCase
 		$this->assertEquals(5, count($blogs), 'Condition and limit will affect returned result');
 	}
 	
-	public function test_includes()
-	{
-		$this->build_articles();
-	
-		JotIdentityMap::clear();
-				
-		$blogs = $this->blog_model->find(array(
-			'includes'=>'articles'
-		));
-		
-		$count = JotIdentityMap::object_count();
-		
-		$this->assertEquals(120, $count, 'Include should return correct number of objects.');
-	}
-	
+//	public function test_includes()
+//	{
+//		$this->build_articles();
+//	
+//		JotIdentityMap::clear();
+//				
+//		$blogs = $this->blog_model->find(array(
+//			'includes'=>'articles'
+//		));
+//		
+//		$count = JotIdentityMap::object_count();
+//		
+//		$this->assertEquals(120, $count, 'Include should return correct number of objects.');
+//	}
+
 	public function test_find_by()
 	{
-		$blogs = $this->blog_model->find_by_status('draft');
+		$this->build_articles();
+		JotIdentityMap::clear();
 		
+		$blogs = $this->blog_model->find_by_status('draft');
+
 		$this->assertEquals(6, count($blogs), 'I want find by x to return rows without using extra syntax.');
 	}
 	

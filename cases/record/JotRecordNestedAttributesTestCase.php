@@ -41,8 +41,9 @@ class JotRecordNestedAttributesTestCase extends JotUnitTestCase
 		$blog = $this->blog_model->create(array(
 			'name' => 'Blog #2'
 		));
-		
+
 		$article = $this->article_model->create(array('title'=>'Article 1'));
+		
 		$article->blog = $blog;
 		
 		$blog->assign_attributes(array(

@@ -94,7 +94,7 @@ class JotRecordAssociationTestCase extends JotUnitTestCase
 			$this->image_model->create(array('image' => 'image_2.png')),
 			$this->image_model->create(array('image' => 'image_3.png')),
 		);
-		
+				
 		$this->assertEquals(3, $company->images->count(), 'Correct number of images returned');
 		
 		$image = $company->images->first();
@@ -119,7 +119,7 @@ class JotRecordAssociationTestCase extends JotUnitTestCase
 		$this->assertEquals('Pet Store', $image->imageable->name, 'Polymorphic object retrieves parent');
 	}
 	
-	public function test_chained_associations()
+	public function test_association_belong_to_create()
 	{
 		$page = $this->page_model->create(array(
 			'name' => 'Page',
@@ -136,6 +136,22 @@ class JotRecordAssociationTestCase extends JotUnitTestCase
 		$this->assertTrue($blog, 'Blog should exist');
 	}
 	
+	public function test_association_has_one_create()
+	{
+		$blog = $this->blog_model->create(array(
+			'name' => 'Blog',
+			'slug' => 'blog'
+		));
+	
+		$this->assertTrue($blog, 'Blog should exist');
+	
+		$page = $blog->create_page(array(
+			'name' => 'Page',
+			'slug' => 'page'
+		));
+		
+		$this->assertTrue($page, 'Page should exist');
+	}
 	
 	public function test_has_many_association()
 	{	
