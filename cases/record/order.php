@@ -2,6 +2,7 @@
 
 $order = array(	
 	'JotRecordTestCase',
+	'JotCollectionTestCase',
 	'JotRecordAttributesTestCase',
 	//	'JotRecordNestedAttributesTestCase',
 	'JotRecordPersistanceTestCase',

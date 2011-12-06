@@ -21,7 +21,7 @@ class JotRecordTestCase extends JotUnitTestCase
 			'name' => 'Blog #2',
 			'slug' => 'blog' 
 		));
-		
+				
 		$this->assertTrue($blog, 'string is returned');
 	}
 	
@@ -31,7 +31,7 @@ class JotRecordTestCase extends JotUnitTestCase
 			'name' => 'Blog #2',
 			'slug' => 'blog' 
 		));
-		
+				
 		$this->assertEquals('blog', $blog->singular_table_name(), 'Should be singluar');
 		$this->assertEquals('blogs', $blog->plural_table_name(), 'Should be singluar');
 	}

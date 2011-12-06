@@ -13,7 +13,7 @@ class JotArrayHelperTestCase extends UnitTestCase
 			'name' => 'John Doe',
 			'description' => 'Lorem Ipsum'
 		);
-		
+				
 		$indexed = array(1, 2, 3, 4, 5);
 		
 		$this->assertTrue(is_assoc($assoc), 'Is associated array');
