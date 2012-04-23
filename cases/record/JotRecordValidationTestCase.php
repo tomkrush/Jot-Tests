@@ -61,6 +61,7 @@ class JotRecordValidationTestCase extends JotUnitTestCase
 	{
 		$blog = new Blog_Validation_Confirm_Model;
 		$blog->password = 'missing_confirm';
+		$blog->confirm_password = '';
 		
 		$this->assertFalse($blog->is_valid(), "I want validation to fail because password can't confirm.");
 	}
