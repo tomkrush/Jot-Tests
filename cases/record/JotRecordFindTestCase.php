@@ -125,6 +125,15 @@ class JotRecordFindTestCase extends JotUnitTestCase
 //		
 //		$this->assertEquals(120, $count, 'Include should return correct number of objects.');
 //	}
+	public function test_find_if_null()
+	{
+		$blogs = $this->blog_model->find(array(
+			'description' => NULL
+		));
+		
+		$this->assertTrue($blogs, 'NULL should act as SQL IS NULL');
+	}
+	
 
 	public function test_find_by()
 	{
