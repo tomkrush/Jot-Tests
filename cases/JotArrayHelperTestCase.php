@@ -25,9 +25,23 @@ class JotArrayHelperTestCase extends UnitTestCase
 		$assoc = array(
 			'name' => 'John'
 		);
-		
+				
 		$this->assertEquals('John', value_for_key('name', $assoc));
 	}
+	
+//	public function test_single_level_performance()
+//	{
+//		$assoc = array(
+//			'name' => 'John'
+//		);
+//				
+//		for($i = 0; $i < 1000000; $i++)
+//		{
+//			value_for_key('name', $assoc);
+//		}
+//
+//		$this->assertTrue(TRUE, 'Single element performance test');
+//	}
 	
 	public function test_single_level_no_value_for_key()
 	{
@@ -35,7 +49,7 @@ class JotArrayHelperTestCase extends UnitTestCase
 	
 		$this->assertFalse(value_for_key('name', $assoc));
 	}
-	
+
 	public function test_default_value_value_for_key()
 	{
 		$person = array();
@@ -63,7 +77,7 @@ class JotArrayHelperTestCase extends UnitTestCase
 		
 		$this->assertEquals('John', value_for_key('person.name.first', $assoc), 'Found deep element');
 	}
-//	
+	
 //	public function test_not_deep_value_for_key_performance()
 //	{
 //		$assoc = array(
