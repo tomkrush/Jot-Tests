@@ -23,7 +23,7 @@ class JotFormTestCase extends JotUnitTestCase
 		
 		$this->assertEquals(htmlentities($expects), htmlentities($html), 'Form open tag');
 	}
-	
+
 	public function test_checkbox()
 	{
 		$blog = $this->blog_model->build(array(
@@ -59,6 +59,27 @@ class JotFormTestCase extends JotUnitTestCase
 		$expects = '<input type="file" name="blog[name]" value="" id="blog_name_field"  />';
 		
 		$this->assertEquals(htmlentities($expects), htmlentities($html), 'File field');		
+	}
+	
+	public function test_select_default_0()
+	{
+		$blog = $this->blog_model->build(array(
+			'name' => 'Blog #2'
+		));
+	
+		form_for($f, $blog, 'http://example.com');
+		
+		$html = $f->select('type', array(
+			'0' => 'bar',
+			'1' => 'foo'
+		), array(), 0);
+		
+		$expects = '<select name="blog[type]" id="blog_type_field" >
+<option value="0" selected="selected">bar</option>
+<option value="1">foo</option>
+</select>';
+		
+		$this->assertEquals(htmlentities($expects), htmlentities($html), 'Select field with default of 0');		
 	}
 
 	public function test_hidden_field()
